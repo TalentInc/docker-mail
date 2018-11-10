@@ -32,7 +32,7 @@ $CONF['configured'] = true;
 // In order to setup Postfixadmin, you MUST specify a hashed password here.
 // To create the hash, visit setup.php in a browser and type a password into the field,
 // on submission it will be echoed out to you as a hashed value.
-$CONF['setup_password'] = '{{ setup_password_hash.stdout }}';
+$CONF['setup_password'] = '86c47110bfe9d58c2462dfa627241a70:09b238547353376531461aefabc8274c025d1226';
 
 // Language config
 // Language files are located in './languages', change as required..
@@ -85,10 +85,10 @@ function language_hook($PALANG, $language) {
 // mysql = MySQL 3.23 and 4.0, 4.1 or 5
 // mysqli = MySQL 4.1+
 // pgsql = PostgreSQL
-$CONF['database_type'] = '{{ configure_mail_postfixadmin_database_type }}';
+$CONF['database_type'] = 'mysqli';
 $CONF['database_host'] = $dbserver;
 $CONF['database_user'] = $dbuser;
-$CONF['database_password'] = '{{ configure_mail_postfixadmin_database_password }}';
+$CONF['database_password'] = 'postfixpassword';
 $CONF['database_name'] = $dbname;
 // If you need to specify a different port for a MYSQL database connection, use e.g.
 //   $CONF['database_host'] = '172.30.33.66:3308';
@@ -163,9 +163,9 @@ $CONF['dovecotpw'] = "/usr/sbin/doveadm pw";
 // (separated with a space).
 $CONF['password_validation'] = array(
 #    '/regular expression/' => '$PALANG key (optional: + parameter)',
-    '/.{5}/'                => 'password_too_short 5',      # minimum length 5 characters
-    '/([a-zA-Z].*){3}/'     => 'password_no_characters 3',  # must contain at least 3 characters
-    '/([0-9].*){2}/'        => 'password_no_digits 2',      # must contain at least 2 digits
+#    '/.{5}/'                => 'password_too_short 5',      # minimum length 5 characters
+#    '/([a-zA-Z].*){3}/'     => 'password_no_characters 3',  # must contain at least 3 characters
+#    '/([0-9].*){2}/'        => 'password_no_digits 2',      # must contain at least 2 digits
 );
 
 // Generate Password

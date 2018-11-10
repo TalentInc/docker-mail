@@ -1,0 +1,7 @@
+SUBDOMAIN=mail
+DOMAIN=example.com
+DB_ROOT_PASSWORD=rootpassword
+DB_HOST=mysql
+POSTFIXADMIN_SETUP_PASSWORD=setuppassword
+POSTFIXADMIN_DB_PASSWORD=postfixpassword
+MYSQL_ROOT_PASSWORD=rootpassword

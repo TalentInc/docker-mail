@@ -1,6 +1,6 @@
 user = {{ configure_mail_postfixadmin_database_user }}
 password = {{ configure_mail_postfixadmin_database_password }}
-hosts = 127.0.0.1
+hosts = {{ configure_mail_database_host }}
 dbname = {{ configure_mail_postfixadmin_database_name }}
 table = mailbox
 select_field = quota

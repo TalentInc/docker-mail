@@ -2,8 +2,7 @@
 # sure you lock down to a specific version, not to `latest`!
 # See https://github.com/phusion/baseimage-docker/blob/master/Changelog.md for
 # a list of version numbers.
-FROM phusion/baseimage:0.9.17
-MAINTAINER Jonathan Rowlands <jonrowlands83@gmail.com>
+FROM ubuntu:trusty
 
 EXPOSE 25 587 80 110 143 993 465
 
@@ -19,10 +18,12 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN echo postfix postfix/main_mailer_type string Internet site | debconf-set-selections;\
   echo postfix postfix/mailname string mail.example.com | debconf-set-selections
 
-RUN apt-get install -y postfix mysql-server mysql-client postfix-mysql courier-authdaemon courier-pop courier-pop-ssl \
+RUN apt-get install -y postfix mysql-client postfix-mysql courier-authdaemon courier-pop courier-pop-ssl \
     courier-imap courier-imap-ssl libsasl2-2 sasl2-bin libsasl2-modules libsasl2-2 libsasl2-modules libpam-mysql \
     rsyslog supervisor dbconfig-common wwwconfig-common apache2 php5 php5-cli php5-imap php5-mysql opendkim \
-    opendkim-tools spamassassin spamc postgrey php5-curl ansible python-mysqldb
+    opendkim-tools php5-curl ansible python-mysqldb links telnet
+
+RUN apt-get install -y spamassassin spamc postgrey
 
 RUN service courier-authdaemon start && apt-get install -y courier-authlib-mysql
 
@@ -37,7 +38,7 @@ RUN usermod -G sasl postfix
 RUN php5enmod imap
 
 ADD http://iweb.dl.sourceforge.net/project/postfixadmin/postfixadmin/postfixadmin-2.92/postfixadmin_2.92-1_all.deb /tmp/postfixadmin.deb
-RUN service mysql start && sleep 5 && dpkg -i /tmp/postfixadmin.deb
+RUN sleep 10 && dpkg -i /tmp/postfixadmin.deb
 RUN apt-get install -f
 
 ADD etc/ansible/roles/jgrowl.configure_mail /etc/ansible/roles/jgrowl.configure_mail
@@ -45,7 +46,7 @@ ADD etc/ansible/roles/jgrowl.configure_mail /etc/ansible/roles/jgrowl.configure_
 # rainloop
 WORKDIR "/var/www/html"
 RUN rm /var/www/html/index.html
-RUN curl -s http://repository.rainloop.net/installer.php | php
+#RUN curl -s http://repository.rainloop.net/installer.php | php
 #RUN chown -R www-data:www-data /var/www/html/data/
 WORKDIR "/"
 

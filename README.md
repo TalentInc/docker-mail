@@ -1,5 +1,7 @@
 # Setup instructions 
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/41e232b039da444b8c091c2be70e664e)](https://app.codacy.com/app/tbola45/docker-mail?utm_source=github.com&utm_medium=referral&utm_content=TalentInc/docker-mail&utm_campaign=Badge_Grade_Settings)
+
 ## Obtain a docker host and source docker environment variables
 
 ### For example, on DigitalOcean:
